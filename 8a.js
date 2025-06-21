@@ -31,3 +31,4 @@ rl.question("Enter a string: ", function(answer) {
   rl.close();
 });
 
+//run npm start
