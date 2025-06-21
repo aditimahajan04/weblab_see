@@ -1,0 +1,44 @@
+<html>
+<body>
+  <h2>Pluralize Nouns Output</h2>
+  Noun: <input type="text" id="noun" required>
+  Number: <input type="number" id="num" required>
+  <button onclick="handleSubmit()">Pluralize</button>
+  <div id="output"></div>
+
+  <script>
+    function pluralize(noun, num) {
+      const irregulars = {
+        sheep: "sheep",
+        goose: "geese",
+        person: "people",
+        child: "children",
+        man: "men",
+        woman: "women",
+        mouse: "mice"
+      };
+
+      let pluralForm = noun;
+
+      if (num !== 1) {
+        pluralForm = irregulars[noun] || noun + "s";
+      }
+
+      const result = `${num} : ${pluralForm}`;
+      document.getElementById("output").innerHTML += result + "<br>";
+    }
+
+    function handleSubmit() {
+      const noun = document.getElementById("noun").value.trim().toLowerCase();
+      const num = parseInt(document.getElementById("num").value, 10);
+
+      if (!noun || isNaN(num)) {
+        alert("Please enter both a noun and a number.");
+        return;
+      }
+
+      pluralize(noun, num);
+    }
+  </script>
+</body>
+</html>
