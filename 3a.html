@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Data Management with Closures</title>
+</head>
+<body>
+  <h1>Student Data Management with Closures</h1>
+  <pre id="output"></pre>
+
+  <script>
+    function studentData() {
+      const students = [];
+
+      return {
+        addStudent: function(usn, subjectCode, subjectName, cieMarks, seeMarks) {
+          const _cieMarks = cieMarks;
+          const _seeMarks = seeMarks;
+
+          const student = {
+            usn,
+            subjectCode,
+            subjectName,
+            getTotalMarks: function() {
+              return _cieMarks + _seeMarks;
+            },
+            displayDetails: function() {
+              return `USN: ${this.usn} | Subject Code: ${this.subjectCode} | Subject Name: ${this.subjectName} | Total Marks: ${this.getTotalMarks()}\n`;
+            }
+          };
+
+          students.push(student);
+        },
+
+        displayAllStudents: function() {
+          let output = "STUDENT DETAILS:\n";
+          students.forEach(student => {
+            output += student.displayDetails();
+          });
+          return output;
+        },
+
+        getStudent: function(index) {
+          return students[index];
+        }
+      };
+    }
+
+    // Setup
+    const output = document.getElementById('output');
+    const manager = studentData();
+
+    // Input
+    const num = parseInt(prompt("Enter number of students:"));
+    for (let i = 0; i < num; i++) {
+      const usn = prompt(`Enter USN for student ${i + 1}:`);
+      const subCode = prompt("Enter Subject Code:");
+      const subName = prompt("Enter Subject Name:");
+      const cie = parseInt(prompt("Enter CIE Marks:"));
+      const see = parseInt(prompt("Enter SEE Marks:"));
+      manager.addStudent(usn, subCode, subName, cie, see);
+    }
+
+    // Output
+    output.textContent = manager.displayAllStudents();
+
+    // 🔒 Proof of closure protection
+    // This will return undefined or error because _cieMarks is private
+    // Uncomment below line to test:
+    // output.textContent += "\nTrying to access private CIE: " + manager.getStudent(0)._cieMarks;
+  </script>
+</body>
+</html>
+
+
+//save and run on open with live server 
