@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>notBad Function</h3>
+  <input id="inputStr" placeholder="Enter text">
+  <button onclick="r()">Check</button>
+  <div id="result"></div>
+
+  <script>
+    function notBad(s) {
+      let n = s.indexOf("not"), b = s.indexOf("bad");
+      return n !== -1 && b > n ? s.slice(0, n) + "good" + s.slice(b + 3) : s;
+    }
+    function r() {
+      result.textContent = notBad(inputStr.value);
+    }
+  </script>
+</body>
+</html>
+
+// create 9a.html 
+// copy paste and run on open with live server 
