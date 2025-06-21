@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stack & Queue</title>
+</head>
+<body>
+  <h2>Stack Operations</h2>
+  <input type="text" id="stackInput" placeholder="Enter value">
+  <button onclick="addToStack()">Push</button>
+  <button onclick="removeFromStack()">Pop</button>
+  <p id="stackDisplay"></p>
+
+  <h2>Queue Operations</h2>
+  <input type="text" id="queueInput" placeholder="Enter value">
+  <button onclick="addToQueue()">Enqueue</button>
+  <button onclick="removeFromQueue()">Dequeue</button>
+  <p id="queueDisplay"></p>
+
+  <script type="module">
+    class Stack {
+      constructor() { this.items = []; }
+      push(val) { this.items.push(val); }
+      pop() { return this.items.pop(); }
+      display() { return this.items.join(', '); }
+    }
+
+    class Queue {
+      constructor() { this.items = []; }
+      enqueue(val) { this.items.push(val); }
+      dequeue() { return this.items.shift(); }
+      display() { return this.items.join(', '); }
+    }
+
+    const stack = new Stack();
+    const queue = new Queue();
+
+    window.addToStack = () => {
+      const val = document.getElementById('stackInput').value;
+      stack.push(val);
+      document.getElementById('stackDisplay').textContent = 'Stack: ' + stack.display();
+    };
+
+    window.removeFromStack = () => {
+      stack.pop();
+      document.getElementById('stackDisplay').textContent = 'Stack: ' + stack.display();
+    };
+
+    window.addToQueue = () => {
+      const val = document.getElementById('queueInput').value;
+      queue.enqueue(val);
+      document.getElementById('queueDisplay').textContent = 'Queue: ' + queue.display();
+    };
+
+    window.removeFromQueue = () => {
+      queue.dequeue();
+      document.getElementById('queueDisplay').textContent = 'Queue: ' + queue.display();
+    };
+  </script>
+</body>
+</html>
+
+<!-- //create a folder 12a
+//create index.html and type the code 
+//save the code and run on open with live server  -->
