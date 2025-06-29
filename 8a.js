@@ -9,26 +9,38 @@
 }
 
 //8a.js
-const readline = require("readline");
-
-function vowelCount(str) {
+const express = require('express');
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.get('/', (req, res) => {
+  res.send(`
+    <html>
+      <body>
+        <form method="POST" action="/">
+          <label>Enter a string:</label><br><br>
+          <input type="text" name="input" required>
+          <button type="submit">Count Vowels</button>
+        </form>
+      </body>
+    </html>
+  `);
+});
+app.post('/', (req, res) => {
+  const input = req.body.input.toLowerCase();
   const vowels = { a: 0, e: 0, i: 0, o: 0, u: 0 };
-  for (let char of str.toLowerCase()) {
+  for (let char of input) {
     if (vowels.hasOwnProperty(char)) {
       vowels[char]++;
     }
   }
-  console.log(`\na, e, i, o, u appear: ${vowels.a}, ${vowels.e}, ${vowels.i}, ${vowels.o}, ${vowels.u} times`);
-}
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
+  res.send(`
+    <html>
+      <body>
+        <p>a, e, i, o, u appear: ${vowels.a}, ${vowels.e}, ${vowels.i}, ${vowels.o}, ${vowels.u} times</p>
+      </body>
+    </html>
+  `);
 });
-
-rl.question("Enter a string: ", function(answer) {
-  vowelCount(answer);
-  rl.close();
-});
-
+app.listen(3000);
+console.log("listening on port 3000")
 //run npm start
