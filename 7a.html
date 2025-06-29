@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Engineering College Branch Info</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .branch {
+      display: none;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    #cse { background-color: #d0f0c0; font-family: Arial; }
+    #ece { background-color: #f9d5e5; font-family: Georgia; }
+    #mech { background-color: #c0e0f0; font-family: Verdana; }
+
+    .nav a {
+      margin: 0 10px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to Our Engineering College</h1>
+  <div class="nav">
+    <a href="#" onclick="showBranch('cse')">Computer Science</a> |
+    <a href="#" onclick="showBranch('ece')">Electronics</a> |
+    <a href="#" onclick="showBranch('mech')">Mechanical</a>
+  </div>
+
+  <div id="cse" class="branch">
+    <h2>Computer Science Engineering</h2>
+    <p>Focuses on Programming, AI, ML, and Database Systems.</p>
+  </div>
+
+  <div id="ece" class="branch">
+    <h2>Electronics and Communication Engineering</h2>
+    <p>Focuses on Signal Processing, Circuits, and Communication.</p>
+  </div>
+
+  <div id="mech" class="branch">
+    <h2>Mechanical Engineering</h2>
+    <p>Focuses on Thermodynamics, Design, and Manufacturing.</p>
+  </div>
+
+  <script>
+    function showBranch(branchId) {
+      document.querySelectorAll('.branch').forEach(el => el.style.display = 'none');
+      document.getElementById(branchId).style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
